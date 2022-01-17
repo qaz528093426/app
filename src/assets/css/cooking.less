@@ -1,0 +1,67 @@
+
+.m-cooking{
+    padding:20px;
+    max-width:1200px;
+    .auto(x);
+    min-height:calc(100vh - @header-height - @bread-height - 100px);
+}
+.m-cooking-main{
+    display: flex;
+    width: 100%;
+    max-width:1200px;
+    min-height:450px;
+    padding: 10px 0;
+    .auto(x);
+    .m-cooking-left{
+        width: 200px;
+        .m-cooking-search{
+            margin-bottom: 20px;
+            .m-cooking-input{
+                width: 200px;
+            }
+        }
+        .m-cooking-column{
+            .el-menu{
+                border:none,
+            }
+        }
+    }
+    .m-cooking-right{
+        width: 100%;
+        padding: 0 30px;
+        .m-cooking-mainItem{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 350px;
+        }
+    }
+}
+.m-cooking-goods{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    height: max-content;
+    .icon{
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        background-color: aquamarine;
+        border-radius: 8px;
+    }
+    .goods{
+
+    }
+}
+
+.m-cooking-tabs{
+    padding: 15px 0;
+}
+
+
+@media screen and (max-width:@phone){
+
+}
