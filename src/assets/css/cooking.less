@@ -12,6 +12,7 @@
     min-height:450px;
     padding: 10px 0;
     .auto(x);
+    
     .m-cooking-left{
         width: 200px;
         .m-cooking-search{
@@ -22,7 +23,26 @@
         }
         .m-cooking-column{
             .el-menu{
-                border:none,
+                border:none;
+                .el-submenu__title{
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+                .el-menu-item{
+                    font-size: 15px;
+                    padding-left: 30px !important;
+                }
+                .el-menu-item,.el-submenu__title{
+                    border-radius: 5px;
+                    margin:5px 0;
+                }
+                .is-opened{
+                    .is-active{
+                        color: #fff;
+                        background-color: #0366d6;
+                    }
+                }
+              
             }
         }
     }
@@ -35,6 +55,20 @@
             align-items: center;
             justify-content: center;
             height: 350px;
+        }
+        .m-cooking-consumeItem{
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .m-cooking-expNav{
+
+            .el-progress-bar__outer{
+            }
+            .el-progress.is-success .el-progress-bar__inner{
+                background-color: #0366d6;
+            }
+            
         }
     }
 }
@@ -49,19 +83,27 @@
         display: inline-block;
         width: 60px;
         height: 60px;
-        background-color: aquamarine;
+        background-color: #0366d6;
         border-radius: 8px;
     }
     .goods{
-
+        font-size: 16px;
+        margin: 10px 8px;
     }
 }
 
 .m-cooking-tabs{
     padding: 15px 0;
 }
-
-
+.font18{
+    font-size: 18px;
+}
+.font20{
+    font-size: 20px;
+}
+.fontW600{
+    font-weight: 600;
+}
 @media screen and (max-width:@phone){
 
 }
