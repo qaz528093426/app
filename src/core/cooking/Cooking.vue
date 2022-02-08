@@ -7,27 +7,16 @@
       root="/app/cooking"
       :feedbackEnable="true"
     >
-      <img
-        slot="logo"
-        svg-inline
-        :src="getAppIcon('cooking')"
-      />
+      <img slot="logo" svg-inline :src="getAppIcon('cooking')" />
     </Breadcrumb>
     <LeftSidebar :open="false">
       <Nav />
     </LeftSidebar>
-    <Main
-      :withoutRight="true"
-      :withoutLeft="true"
-    >
+    <Main :withoutRight="true" :withoutLeft="true">
       <div class="m-cooking">
         <div class="m-cooking-head">
           <div class="m-cooking-tabs">
-            <el-radio-group
-              v-model="type"
-              size="medium"
-              @change="search"
-            >
+            <el-radio-group v-model="type" size="medium" @change="search">
               <el-radio-button label="sewing">缝纫</el-radio-button>
               <el-radio-button label="forging">锻造</el-radio-button>
               <el-radio-button label="cooking">烹饪</el-radio-button>
@@ -49,10 +38,7 @@
               ></el-autocomplete>
             </div>
             <div class="m-cooking-column">
-              <el-menu
-                @open="handleOpen"
-                @close="handleClose"
-              >
+              <el-menu @open="handleOpen" @close="handleClose">
                 <el-submenu
                   v-for="item in typeColumnArr"
                   :key="item.index"
@@ -66,7 +52,7 @@
                     :key="subItem.index"
                     :index="subItem.index"
                     @click="handleClick(subItem)"
-                  >{{ subItem.title }}
+                    >{{ subItem.title }}
                   </el-menu-item>
                 </el-submenu>
               </el-menu>
@@ -74,24 +60,20 @@
           </div>
           <div class="m-cooking-right">
             <div class="m-cooking-expNav">
-              <div class="font20">
-                {{level}}级
-              </div>
+              <div class="font20">{{ level }}级</div>
               <div class="m-cooking-progress">
-                <el-progress
-                  :percentage="exp"
-                  status="success"
-                ></el-progress>
+                <el-progress :percentage="exp"></el-progress>
               </div>
             </div>
             <div class="m-cooking-mainItem">
               <div class="m-cooking-goods">
                 <span class="icon"></span>
-                <span class="goods">{{goodsObj.title}}</span>
+                <span class="goods">{{ goodsObj.title }}</span>
               </div>
               <el-input-number
                 v-if="goodsObj.title"
                 size="mini"
+                :min="1"
                 @change="handleNumber"
                 v-model="buildNumber"
               ></el-input-number>
@@ -99,19 +81,19 @@
             <div class="m-cooking-subItem">
               <div class="font18">
                 <span class="fontW600">货币消耗：</span>
-                <span>{{goodsObj.moneyExpend}}</span>
+                <span>{{ goodsObj.moneyExpend }}</span>
               </div>
               <div class="m-cooking-consumeItem">
                 <div class="font18 fontW600">材料消耗：</div>
                 <div
-                  v-for="(item,index) in goodsObj.consumeList"
+                  v-for="(item, index) in goodsObj.consumeList"
                   :key="index"
                   class="m-cooking-goods"
                 >
                   <span class="icon"></span>
                   <span class="goods">
-                    <span>{{item.title}}</span>
-                    <span>{{`(x${item.index})`}}</span>
+                    <span>{{ item.title }}</span>
+                    <span>{{ `(x${item.index})` }}</span>
                   </span>
                 </div>
               </div>
@@ -308,7 +290,23 @@ export default {
     },
     handleNumber(e) {
       let number = this.goodsObj.getExp * e;
-      console.log(e, number, (number % this.needExp)%100);
+      this.exp = this.GetPercent(number,this.needExp)
+      console.log(e, number,this.GetPercent(number,this.needExp));
+    },
+    GetPercent(num, total) {
+      /// <summary>
+      /// 求百分比
+      /// </summary>
+      /// <param name="num">当前数</param>
+      /// <param name="total">总数</param>
+      num = parseFloat(num);
+      total = parseFloat(total);
+      if (isNaN(num) || isNaN(total)) {
+        return "-";
+      }
+      return total <= 0
+        ? 0
+        : Math.round((num / total) * 10000) / 100.0;
     },
   },
   filters: {},
